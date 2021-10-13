@@ -11,8 +11,16 @@ var project_routes = require('./routes/proyect');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); //cualquier tipo de peticion a json
 
-//CORS
+// configuarar cabeceras y CORS
 
+app.use((req,res,next)=>{
+    res.header('Acces-Control-Allow-Origin','*');
+    res.header('Acces-Control-Allow-Headers','Authorization, X-API-KEY, Origin');
+    res.header('Acces-Control-Allow-Methods','GET, POST, OPTIONS,PUT,DELETE');
+    res.header('Allow','GET, POST, OPTIONS, PUT, DELETE');
+    next();
+
+})
 // rutas
 app.use('/api', project_routes);
 
